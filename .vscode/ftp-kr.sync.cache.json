@@ -1,0 +1,65 @@
+{
+  "ftps://skipcycle@pb685.brighton.domains@ftp.pb685.brighton.domains:21": {
+    ".ftpquota": {
+      "type": "-",
+      "size": 4,
+      "lmtime": 0,
+      "modified": false
+    },
+    "api": {
+      ".htaccess": {
+        "type": "-",
+        "size": 350,
+        "lmtime": 0,
+        "modified": true
+      },
+      "Auth.php": {
+        "type": "-",
+        "size": 5024,
+        "lmtime": 1792114180305.6165,
+        "modified": false
+      },
+      "Database.php": {
+        "type": "-",
+        "size": 1440,
+        "lmtime": 1792114139016.188,
+        "modified": false
+      },
+      "error_log": {
+        "type": "-",
+        "size": 3384,
+        "lmtime": 0,
+        "modified": true
+      },
+      "index.php": {
+        "type": "-",
+        "size": 2810,
+        "lmtime": 1792114959496.8022,
+        "modified": false
+      },
+      "tokens": {
+        "TokenController.php": {
+          "type": "-",
+          "size": 1828,
+          "lmtime": 1792095904421.0452,
+          "modified": false
+        }
+      },
+      "users": {
+        "UsersController.php": {
+          "type": "-",
+          "size": 9080,
+          "lmtime": 1792096537096.0708,
+          "modified": false
+        },
+        "UserModel.php": {
+          "type": "-",
+          "size": 3009,
+          "lmtime": 1792096766191.455,
+          "modified": false
+        }
+      }
+    }
+  },
+  "$version": 1
+}

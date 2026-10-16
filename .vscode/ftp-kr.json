@@ -1,0 +1,19 @@
+{
+    "host": "ftp.pb685.brighton.domains",
+    "username": "skipcycle@pb685.brighton.domains",
+    "password": "Klipschagon69!",
+    "remotePath": "",
+    "protocol": "ftps",
+    "port": 21,
+    "tlsOptions": {
+        "rejectUnauthorized": false
+    },
+    "fileNameEncoding": "utf8",
+    "autoUpload": false,
+    "autoDelete": false,
+    "autoDownload": false,
+    "ignore": [
+        ".git",
+        "/.vscode"
+    ]
+}
