@@ -1,7 +1,4 @@
 <?php
-// src/Users/UserModel.php
-// require_once realpath(__DIR__ . '/../Database.php');
-
 
 class UserModel {
     private PDO $conn;

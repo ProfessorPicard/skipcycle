@@ -22,8 +22,22 @@
       "Database.php": {
         "type": "-",
         "size": 1440,
-        "lmtime": 1792114139016.188,
+        "lmtime": 1792115751261.9937,
         "modified": false
+      },
+      "auth": {
+        "Auth.php": {
+          "type": "-",
+          "size": 4974,
+          "lmtime": 1792247519908.003,
+          "modified": false
+        },
+        "AuthController.php": {
+          "type": "-",
+          "size": 4630,
+          "lmtime": 1792247586872.3486,
+          "modified": false
+        }
       },
       "error_log": {
         "type": "-",
@@ -33,8 +47,8 @@
       },
       "index.php": {
         "type": "-",
-        "size": 2810,
-        "lmtime": 1792114959496.8022,
+        "size": 2972,
+        "lmtime": 1792247689673.688,
         "modified": false
       },
       "tokens": {
@@ -46,20 +60,48 @@
         }
       },
       "users": {
-        "UsersController.php": {
-          "type": "-",
-          "size": 9080,
-          "lmtime": 1792096537096.0708,
-          "modified": false
-        },
         "UserModel.php": {
           "type": "-",
-          "size": 3009,
-          "lmtime": 1792096766191.455,
+          "size": 2922,
+          "lmtime": 1792247557930.8552,
+          "modified": false
+        },
+        "UsersController.php": {
+          "type": "-",
+          "size": 6962,
+          "lmtime": 1792247451721.7866,
           "modified": false
         }
       }
-    }
+    },
+    "css": {
+      "header.css": {
+        "type": "-",
+        "size": 474,
+        "lmtime": 1792244443428.4768,
+        "modified": false
+      },
+      "map.css": {
+        "type": "-",
+        "size": 69,
+        "lmtime": 1792115751262.9944,
+        "modified": false
+      }
+    },
+    "images": {},
+    "index.html": {
+      "type": "-",
+      "size": 0,
+      "lmtime": 0,
+      "modified": false
+    },
+    "map.html": {
+      "type": "-",
+      "size": 1557,
+      "lmtime": 1792244856021.4858,
+      "modified": false
+    },
+    "scripts": {}
   },
   "$version": 1
 }

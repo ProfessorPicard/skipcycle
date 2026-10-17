@@ -14,25 +14,10 @@ class UserController {
      */
     public function handleRequest(string $method, ?string $action, ?string $id, ?array $currentUser): void {
         switch ($action) {
+            
             case 'register':
                 if ($method === 'POST') {
                     $this->register();
-                } else {
-                    $this->methodNotAllowed();
-                }
-                break;
-
-            case 'login':
-                if ($method === 'POST') {
-                    $this->login();
-                } else {
-                    $this->methodNotAllowed();
-                }
-                break;
-
-            case 'logout':
-                if ($method === 'POST') {
-                    $this->logout();
                 } else {
                     $this->methodNotAllowed();
                 }
@@ -100,54 +85,6 @@ class UserController {
             http_response_code(500);
             echo json_encode(["status" => "error", "message" => "Failed to register user"]);
         }
-    }
-
-    /**
-     * Handles user login (POST /api/users/login)
-     */
-    private function login(): void {
-        $data = json_decode(file_get_contents("php://input"), true) ?? $_POST;
-
-        if (empty($data['email']) || empty($data['password'])) {
-            http_response_code(400);
-            echo json_encode(["status" => "fail", "message" => "Email and password required"]);
-            return;
-        }
-
-        $user = $this->model->findByEmail(trim($data['email']));
-
-        if ($user && password_verify($data['password'], $user['password_hash'])) {
-            $tokens = Auth::createTokens((int)$user['id']);
-
-            http_response_code(200);
-            echo json_encode([
-                "status"  => "success",
-                "message" => "Login successful",
-                "tokens"  => $tokens
-            ]);
-        } else {
-            http_response_code(401);
-            echo json_encode(["status" => "fail", "message" => "Invalid email or password"]);
-        }
-    }
-
-    /**
-     * Revokes the active session during logout (POST /api/users/logout)
-     */
-    private function logout(): void {
-        $headers = getallheaders();
-        $authHeader = $headers['Authorization'] 
-            ?? $headers['authorization'] 
-            ?? $_SERVER['HTTP_AUTHORIZATION'] 
-            ?? $_SERVER['REDIRECT_HTTP_AUTHORIZATION'] 
-            ?? '';
-
-        if (preg_match('/Bearer\s(\S+)/', $authHeader, $matches)) {
-            Auth::revokeSession($matches[1]);
-        }
-
-        http_response_code(200);
-        echo json_encode(["status" => "success", "message" => "Logged out successfully"]);
     }
 
     /**

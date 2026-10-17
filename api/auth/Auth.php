@@ -1,6 +1,6 @@
 <?php
 // src/Auth/Auth.php
-require_once realpath(__DIR__ . '/Database.php');
+require_once realpath(__DIR__ . '/../Database.php');
 
 class Auth {
 
@@ -8,10 +8,7 @@ class Auth {
      * Generates a new Refresh Token (7 days) and Access Token (15 mins).
      * Stores sha256 hashes in the database while returning raw tokens to the client.
      */
-    // src/Auth/Auth.php
-
-    // src/Auth/Auth.php
-
+    
     public static function createTokens(int $userId): array {
         $db = Database::getInstance()->getConnection();
 
@@ -50,8 +47,8 @@ class Auth {
         return [
             "access_token"       => $rawAccessToken,
             "refresh_token"      => $rawRefreshToken,
-            "access_expires_in"  => 900,
-            "refresh_expires_in" => 604800
+            "access_expires_at"  => $db->query("SELECT UNIX_TIMESTAMP(DATE_ADD(NOW(), INTERVAL 15 MINUTE)) AS expires_at")->fetchColumn(),
+            "refresh_expires_at" => $db->query("SELECT UNIX_TIMESTAMP(DATE_ADD(NOW(), INTERVAL 7 DAY)) AS expires_at")->fetchColumn()
         ];
     }
     /**
