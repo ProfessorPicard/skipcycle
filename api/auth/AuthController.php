@@ -82,7 +82,8 @@ class AuthController {
             echo json_encode([
                 'status'       => 'success',
                 'access_token' => $tokens["access_token"],
-                'access_expires_at' => $tokens["access_expires_at"]
+                'access_expires_at' => $tokens["access_expires_at"],
+                'user_id'      => $user['id']
             ]);
         } else {
             http_response_code(401);
@@ -147,7 +148,8 @@ class AuthController {
             echo json_encode([
                 "status" => "success",
                 "access_token" => $newTokens["access_token"],
-                "access_expires_at" => $newTokens["access_expires_at"]
+                "access_expires_at" => $newTokens["access_expires_at"],
+                "user_id" => $newTokens['user_id']
             ]);
 
 

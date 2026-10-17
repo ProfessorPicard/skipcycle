@@ -48,7 +48,7 @@ async function onMapClick(e) {
                     'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify({
-                    user_id: 2,
+                    user_id: userId,
                     title: "Sample Item",
                     description: "This is a sample item.",
                     image: "sample-image.jpg",

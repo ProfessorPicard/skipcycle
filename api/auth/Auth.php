@@ -45,6 +45,7 @@ class Auth {
         ]);
 
         return [
+            "user_id"            => $userId,
             "access_token"       => $rawAccessToken,
             "refresh_token"      => $rawRefreshToken,
             "access_expires_at"  => $db->query("SELECT UNIX_TIMESTAMP(DATE_ADD(NOW(), INTERVAL 15 MINUTE)) AS expires_at")->fetchColumn(),

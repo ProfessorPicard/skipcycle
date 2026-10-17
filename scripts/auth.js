@@ -1,6 +1,7 @@
 // Access token is held strictly in memory
 let accessToken = null;
 let refreshPromise = null;
+let userId = null;
 
 // 1. Silent Initialization on Page Load
 async function initAuth() {
@@ -53,6 +54,7 @@ async function silentRefresh() {
         if (res.ok) {
             const data = await res.json();
             accessToken = data.access_token;
+            userId = data.user_id;
             return accessToken;
         }
     } catch (e) {
