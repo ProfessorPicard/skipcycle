@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="css/header.css" type="text/css" />
         <link rel="stylesheet" href="css/map.css" type="text/css" />
         <script src="scripts/auth.js"></script>
+        <script src="scripts/header.js"></script>
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
      crossorigin=""></script>
@@ -23,10 +24,24 @@
                 <div id="profileImage"></div>
             </div>
         </div>
+        
+        <div id=""mapContainer>
+            <div id="mapHeader">
+                <div id="mapControls">
+                    <button id="addItemBtn">Add Item</button>
+                    <button id="logoutBtn">Logout</button>
+                </div>
+            </div>
+            <div id="detailView"></div>
+            <div id="map"></div>
+        </div>
 
-        <div id="map"></div>
+        <div id="noLocation">
+            <p>Location services are not supported or enabled. 
+                Please enable location services to use this service.</p>
+        </div>
 
-        <div>
+        <div id="addItemView">
 
         </div>
     </body>

@@ -8,14 +8,14 @@ async function initAuth() {
     getAccessToken().then(token => {
         if (token) {
             console.log("Access token retrieved: ", accessToken);
-            // updateUI(true);
+            setAuthState(true);
         } else {
             console.log("No access token found.");
-            // updateUI(false);
+            setAuthState(false);
         }
     }).catch(err => {
         console.error("Session restoration failed:", err);
-        // updateUI(false);
+        setAuthState(false);
     });
 }
 
@@ -64,6 +64,13 @@ async function silentRefresh() {
     accessToken = null;
     // updateUI(false);
     return accessToken;
+}
+
+function setAuthState(isLoggedIn) {
+    const event = new CustomEvent('authStateChanged', { 
+        detail: { isLoggedIn } 
+    });
+    window.dispatchEvent(event);
 }
 
 document.addEventListener('DOMContentLoaded', initAuth);

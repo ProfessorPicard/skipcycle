@@ -27,11 +27,9 @@ async function getItemsByRadius(latitude, longitude, radius_meters) {
             }
         } catch (err) {
             console.error("Items within radius Error:", err);
-            // updateUI(false);
         }
     } else {
         console.log("No valid session found. Cannot fetch items.");
-        // updateUI(false);
     }
     
 }
@@ -80,28 +78,47 @@ async function mapMovedEnd(e) {
     
 }
 
+async function success(position) {
+    console.log("Geolocation is enabled.");
+        map = L.map('map').setView([position.coords.longitude, position.coords.latitude], 13);
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+
+        map.on('moveend', mapMovedEnd);
+
+        // map.on('click', onMapClick);
+
+        if(navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                console.log("Current Position - Lat: ", position.coords.latitude, "Lng: ", position.coords.longitude);
+                map.setView([position.coords.latitude, position.coords.longitude], 13);
+            });
+        } else {
+            console.log("Geolocation is not supported by this browser.");
+        }
+        
+        await populateMap();
+}
+
+function error(err) {
+    document.getElementById('noLocation').style.display = 'block';
+    document.getElementById('mapContainer').style.setProperty('display', 'none', 'important');
+    console.error("Geolocation error:", err);
+}
+
 async function initMap() {
-        map = L.map('map').setView([51.505, -0.09], 13);
-            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 19,
-                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-            }).addTo(map);
 
-            map.on('moveend', mapMovedEnd);
+    if(navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(success, error);
+    } else {
+        console.log("Geolocation is not supported by this browser.");
+        document.getElementById('noLocation').style.display = 'block';
+        document.getElementById('mapContainer').style.setProperty('display', 'none', 'important');
+    }
 
-            map.on('click', onMapClick);
-
-            if(navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    console.log("Current Position - Lat: ", position.coords.latitude, "Lng: ", position.coords.longitude);
-                    map.setView([position.coords.latitude, position.coords.longitude], 13);
-                });
-            } else {
-                console.log("Geolocation is not supported by this browser.");
-            }
-            
-            await populateMap();
-
+    
 }
 
 async function populateMap() {
@@ -134,5 +151,14 @@ async function populateMap() {
     });
 
 }
+
+window.addEventListener('authStateChanged', (e) => {
+    const { isLoggedIn } = e.detail;
+    if (isLoggedIn) {
+        // Logged In
+    } else {
+        // Not logged in
+    }
+});
 
 document.addEventListener('DOMContentLoaded', initMap);
